@@ -5,5 +5,7 @@ public class Terrain {
 	public String ville;
 	public int id_Terrain;
 	public String Type_Terrain;
+	
+	
 	 
 }

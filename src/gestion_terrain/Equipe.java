@@ -11,9 +11,16 @@ public class Equipe {
 		this.NomEquipe=NomEquipe;
 		ArrayList<Joueur> JoueursEquipe= new ArrayList<Joueur>();}
 		
-	public void AjouterJoueur(Joueur joueur) {
-		if(!JoueursEquipe.contains(joueur) & !PosteExiste(joueur.getPoste())) {
-			JoueursEquipe.add(joueur);}
+	public void AjouterJoueur(Joueur joueur) throws EquipeCompleteException {
+		if(!JoueursEquipe.contains(joueur) && !PosteExiste(joueur.getPoste())) {
+			if (this.NombreJoueursManquant() > 0) {
+                JoueursEquipe.add(joueur);
+                
+            } 
+			else {
+                throw new EquipeCompleteException("L'équipe est complète.");}
+            
+	}
 	}
 		  
 	 
@@ -23,7 +30,7 @@ public class Equipe {
 		
 	} 
 
-public int NombreJoueurManquants() {
+public int NombreJoueursManquant() {
 	return nbreJoueurMax-JoueursEquipe.size() ;
 }
  
