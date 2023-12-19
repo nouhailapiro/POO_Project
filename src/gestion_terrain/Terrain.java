@@ -1,9 +1,9 @@
 package gestion_terrain;
 
 public class Terrain {
-	private int capacité;
-	private String ville;
-	private int id_Terrain;
-	private String Type_Terrain;
+	public int capacité;
+	public String ville;
+	public int id_Terrain;
+	public String Type_Terrain;
 	
 }
