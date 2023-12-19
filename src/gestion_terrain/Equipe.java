@@ -6,7 +6,7 @@ public class Equipe {
 	private String NomEquipe;
 	private List JoueurEquipe;
 	private int nbreJoueurMax;
-	private int k;
+	
 	
 	
 	
