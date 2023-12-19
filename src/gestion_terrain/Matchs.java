@@ -20,7 +20,9 @@ public class Matchs {
 		NbreMatchs++;
 		this.idMatch=NbreMatchs;
 		
-	}
+	} 
+	
+	
 	
 
 }
