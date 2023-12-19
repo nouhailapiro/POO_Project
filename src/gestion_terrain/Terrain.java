@@ -6,5 +6,4 @@ public class Terrain {
 	private int id_Terrain;
 	private String Type_Terrain;
 	
-
 }
