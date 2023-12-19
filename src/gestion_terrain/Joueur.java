@@ -5,7 +5,17 @@ public class Joueur {
 	private String prenom;
 	private String poste;
 	private int age;
-	private int idJoueur;
+	private int idJoueur; 
+	private static int nbreJoueurs=0;
+	
+	public Joueur(String nom,String prenom,String poste,int age) {
+		this.nom=nom;
+		this.prenom=prenom;
+		this.poste=poste;
+		this.age=age;
+		nbreJoueurs++;
+		this.idJoueur=nbreJoueurs;
+	}
 	
 	
 	public int getIdJoueur() {
