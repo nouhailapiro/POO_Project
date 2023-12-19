@@ -6,4 +6,5 @@ public EquipeBasket(String NomEquipe) {
 	this.nbreJoueurMax=5;
 } 
 
+
 }

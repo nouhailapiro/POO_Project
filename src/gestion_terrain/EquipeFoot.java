@@ -7,3 +7,4 @@ public class EquipeFoot extends Equipe{
 	}
 
 }
+
