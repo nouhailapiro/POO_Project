@@ -10,7 +10,9 @@ public class Terrain {
 		this.Type_Terrain=Type_Terrain;
 		this.ville=ville;
 		
-	
 	}
+	
+		
+	
 	 
 }

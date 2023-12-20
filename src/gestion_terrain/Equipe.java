@@ -6,9 +6,11 @@ public class Equipe {
 	public String NomEquipe;
 	public ArrayList<Joueur> JoueursEquipe;
 	public int nbreJoueurMax;
+    public String type;
 	
-	public Equipe(String NomEquipe){
+	public Equipe(String NomEquipe, String type){
 		this.NomEquipe=NomEquipe;
+		this.type=type;
 		ArrayList<Joueur> JoueursEquipe= new ArrayList<Joueur>();}
 		
 	public void AjouterJoueur(Joueur joueur) throws EquipeCompleteException {
