@@ -7,11 +7,13 @@ public class Equipe {
 	public ArrayList<Joueur> JoueursEquipe;
 	public int nbreJoueurMax;
     public String type;
+    public boolean participer_competition;
+    
 	
 	public Equipe(String NomEquipe, String type){
 		this.NomEquipe=NomEquipe;
 		this.type=type;
-		ArrayList<Joueur> JoueursEquipe= new ArrayList<Joueur>();}
+		ArrayList<Joueur> JoueursEquipe = new ArrayList<Joueur>();}
 		
 	public void AjouterJoueur(Joueur joueur) throws EquipeCompleteException {
 		if(!JoueursEquipe.contains(joueur) && !PosteExiste(joueur.getPoste())) {
@@ -32,18 +34,20 @@ public class Equipe {
 		
 	} 
 
-public int NombreJoueursManquant() {
-	return nbreJoueurMax-JoueursEquipe.size() ;
-}
- 
-public boolean PosteExiste(String Poste) { 
-	for (Joueur j : JoueursEquipe) {
-		if(j.getPoste().equals(Poste)) {
-			return true;
-		}
+	public int NombreJoueursManquant() {
+		return nbreJoueurMax-JoueursEquipe.size() ;
 	}
-	return false;
-}
+	 
+	public boolean PosteExiste(String Poste) { 
+		for (Joueur j : JoueursEquipe) {
+			if(j.getPoste().equals(Poste)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 
 	
 

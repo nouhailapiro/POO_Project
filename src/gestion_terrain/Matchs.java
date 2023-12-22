@@ -12,6 +12,7 @@ public class Matchs {
 	public Equipe equipe1;
 	public Equipe equipe2; 
 	public static int NbreMatchs=0;
+	public Equipe equipegagnante;
 	
 	
 	public Matchs(Date date,Terrain terrain,String type) {
@@ -63,6 +64,8 @@ public void MatchStatut() {
          System.out.println("Le match est en cours");
      }
 }
+
+
 		
 		
 	
