@@ -18,6 +18,7 @@ public class Joueur extends Personne{
 	
 	
 	
+	
 	public void changePoste(String poste) {
 		this.poste = poste;
 	}

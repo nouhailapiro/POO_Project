@@ -15,5 +15,6 @@ public class Supporter extends Personne {
            public<T> void OffrirCadeau(T cadeau, Equipe equipe) {
         	   equipe.Cadeaux.add((Object) cadeau);
         	   
+        	   
            }
 }

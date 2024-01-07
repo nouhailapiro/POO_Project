@@ -9,7 +9,7 @@ public class Equipe {
 	public String NomEquipe;
 	public List<Joueur> JoueursEquipe;
 	public List<Object> Cadeaux;
-	public int nbreJoueurMax;
+	public int nbreJoueurMax=11;
   
     public boolean participer_competition;
     
