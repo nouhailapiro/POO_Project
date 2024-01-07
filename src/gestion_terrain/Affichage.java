@@ -1,5 +1,7 @@
 package gestion_terrain;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -20,12 +22,15 @@ public class Affichage extends Application{
         Scene scene = new Scene(vbox, 300, 200);
 
         boolean matchEnCours = false;
+        if (Matchs.historique == null) {
+            Matchs.historique = new ArrayList<>(); 
+        }
 
         for (Matchs match : Matchs.historique) {
             if (match.MatchStatut().equals("match en cours")) {
                 matchEnCours = true;
                 
-                Label idLabel = new Label("ID du match: " + match.idMatch);
+                Label idLabel = new Label("ID du match: " + Integer.toString(match.idMatch));
                 Label scoreLabel = new Label("Score: " + match.Score());
                 Label dureeJoueeLabel = new Label("Durée jouée: " + match.getDureeJouee());
                 Label dureeRestanteLabel = new Label("Durée restante: " + match.getDureeRestante());
