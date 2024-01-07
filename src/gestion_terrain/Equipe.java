@@ -1,20 +1,26 @@
 package gestion_terrain;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Equipe {
-	public String NomEquipe;
-	public ArrayList<Joueur> JoueursEquipe;
-	public int nbreJoueurMax;
-    public String type;
 	
-	public Equipe(String NomEquipe, String type){
+	public String NomEquipe;
+	public List<Joueur> JoueursEquipe;
+	public List<Object> Cadeaux;
+	public int nbreJoueurMax;
+  
+    public boolean participer_competition;
+    
+	
+	public Equipe(String NomEquipe){
 		this.NomEquipe=NomEquipe;
-		this.type=type;
-		ArrayList<Joueur> JoueursEquipe= new ArrayList<Joueur>();}
+		
+		List<Joueur> JoueursEquipe = new ArrayList<Joueur>();}
 		
 	public void AjouterJoueur(Joueur joueur) throws EquipeCompleteException {
-		if(!JoueursEquipe.contains(joueur) && !PosteExiste(joueur.getPoste())) {
+		if(!JoueursEquipe.contains(joueur) && !PosteExiste(joueur.poste)) {
 			if (this.NombreJoueursManquant() > 0) {
                 JoueursEquipe.add(joueur);
                 
@@ -23,7 +29,13 @@ public class Equipe {
                 throw new EquipeCompleteException("L'équipe est complète.");}
             
 	}
-	}
+	} 
+	public void afficherCadeaux() {
+        System.out.println("Liste des cadeaux de l'équipe:");
+        for (Object cadeau : Cadeaux) {
+            System.out.println(cadeau);
+        }
+    }
 		  
 	 
 	
@@ -32,18 +44,20 @@ public class Equipe {
 		
 	} 
 
-public int NombreJoueursManquant() {
-	return nbreJoueurMax-JoueursEquipe.size() ;
-}
- 
-public boolean PosteExiste(String Poste) { 
-	for (Joueur j : JoueursEquipe) {
-		if(j.getPoste().equals(Poste)) {
-			return true;
-		}
+	public int NombreJoueursManquant() {
+		return nbreJoueurMax-JoueursEquipe.size() ;
 	}
-	return false;
-}
+	 
+	public boolean PosteExiste(String Poste) { 
+		for (Joueur j : JoueursEquipe) {
+			if(j.poste.equals(Poste)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 
 	
 
