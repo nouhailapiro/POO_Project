@@ -162,7 +162,7 @@ public String getDureeJouee() {
 	}
 	return null;
 }
-}
+
 	
 	
 	
