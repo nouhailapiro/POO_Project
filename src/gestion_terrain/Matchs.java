@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -21,12 +22,13 @@ public class Matchs {
 	public static int NbreMatchs=0;
 	public HashMap<Equipe,Integer> score;
 	public Equipe EquipeGagnante=null;
-	public static List<Matchs> historique;
+	public static List<Matchs> historique=new ArrayList<>(); //pour enregistrer chaque match instancié
 	
 	
 	public Matchs(Date date,Terrain terrain,Equipe equipe1, Equipe equipe2)throws ExceptionEquipeIncomplete {
 		this.date=date;
 		this.terrain=terrain;
+	
 		
 		NbreMatchs++;
 		this.idMatch=NbreMatchs;
@@ -77,56 +79,42 @@ public class Matchs {
 	
 
  
-public String MatchStatut() {
-	Date datedebutmatch=this.date;
-	Calendar calendar = Calendar.getInstance();
-    calendar.setTime(datedebutmatch);
+	public int MatchStatut() {
+	    Date datedebutmatch = this.date;
+	    Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(datedebutmatch);
 
-  
-    calendar.add(Calendar.HOUR_OF_DAY, 1);
-    calendar.add(Calendar.MINUTE, 30);
+	    calendar.add(Calendar.HOUR_OF_DAY, 1);
+	    calendar.add(Calendar.MINUTE, 30);
 
-    Date finmatch = calendar.getTime();
+	    Date finmatch = calendar.getTime();
 
-    
-	 Date currentDate = new Date();
-	 int result2 =finmatch.compareTo(currentDate);
-	 int result1=this.date.compareTo(currentDate);
-	 if (result2<0) {
-         return"Le match a déja été joué.";
-     } else if (result1 > 0) {
-        return "Le match sera joué prochainement.";
-     } else {
-        return "Le match est en cours";
-     }
-}
-public static void Historique(Path chemin) {
-	 try (BufferedWriter writer = Files.newBufferedWriter(chemin)) {
+	    Date currentDate = new Date();
+	    if (currentDate.after(datedebutmatch) && currentDate.before(finmatch)) {
+	        return 0;
+	    } else if (finmatch.before(currentDate)) {
+	        return -1;
+	    } else {
+	        return 1;
+	    }
+	}
+public static void Historique(Path cheminPath) throws IOException {
+
          for (Matchs match : historique) {
-        	 if(match.MatchStatut().equals("Le match a déja été joué.")) {
-             
-             writer.write("ID du match: " + Integer.toString(match.idMatch));
-             writer.newLine();
-             writer.write("Date du match: " + match.date.toString());
-             writer.newLine();
-             writer.write("Terrain: " + match.terrain.nomTerrain);
-             writer.newLine();
-             writer.write("Score: " + match.Score());
-             writer.newLine();
-
-            
-             writer.newLine();
+        	 if(match.MatchStatut()==-1) {
+        		 String texte="ID du match: " + Integer.toString(match.idMatch)+"\nDate du match: " + 
+        		 		match.date.toString()+"\nTerrain: " + 
+        				 match.terrain.nomTerrain+"\nScore: " + match.Score()+"\n";
+             Files.write(cheminPath, texte.getBytes(),StandardOpenOption.APPEND,StandardOpenOption.CREATE,
+            		 StandardOpenOption.WRITE);
          }
          }
 
          
-     } catch (IOException e) {
-         
-         e.printStackTrace();
      }
- }
+ 
 public String getDureeRestante() {
-	if (this.MatchStatut().equals("Le match est en cours")) {
+	if (this.MatchStatut()==0) {
 		Date datedebutmatch=this.date;
 		Date currentDate = new Date();
 		long dureeTotale = 1 * 60 * 60 * 1000 + 30 * 60 * 1000;
@@ -145,7 +133,7 @@ public String getDureeRestante() {
 }
 	
 public String getDureeJouee() {
-	if (this.MatchStatut().equals("Le match est en cours")) {
+	if (this.MatchStatut()==0) {
 		Date datedebutmatch=this.date;
 		Date currentDate = new Date();
 		
@@ -166,10 +154,6 @@ public String getDureeJouee() {
 	
 	
 	
-	
-	
-
-		
 	
 
 	

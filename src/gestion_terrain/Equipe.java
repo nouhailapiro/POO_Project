@@ -8,8 +8,8 @@ public class Equipe {
 	
 	public String NomEquipe;
 	public List<Joueur> JoueursEquipe;
-	public List<Object> Cadeaux;
-	public int nbreJoueurMax=11;
+	public List<Object> Cadeaux=new ArrayList<>();
+	public int nbreJoueurMax=6;
   
     public boolean participer_competition;
     
@@ -17,9 +17,10 @@ public class Equipe {
 	public Equipe(String NomEquipe){
 		this.NomEquipe=NomEquipe;
 		
-		List<Joueur> JoueursEquipe = new ArrayList<Joueur>();}
+		 this.JoueursEquipe = new ArrayList<Joueur>();}
 		
 	public void AjouterJoueur(Joueur joueur) throws EquipeCompleteException {
+		if(JoueursEquipe!=null) {
 		if(!JoueursEquipe.contains(joueur) && !PosteExiste(joueur.poste)) {
 			if (this.NombreJoueursManquant() > 0) {
                 JoueursEquipe.add(joueur);
@@ -29,6 +30,10 @@ public class Equipe {
                 throw new EquipeCompleteException("L'équipe est complète.");}
             
 	}
+		}
+		else {
+			JoueursEquipe.add(joueur);
+		}
 	} 
 	public void afficherCadeaux() {
         System.out.println("Liste des cadeaux de l'équipe:");

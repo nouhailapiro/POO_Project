@@ -1,0 +1,4 @@
+ID du match: 1
+Date du match: Mon Jan 08 19:00:00 WEST 2024
+Terrain: AlWifaq
+Score: EquipeBleu:1 EquipeRouge:0 
