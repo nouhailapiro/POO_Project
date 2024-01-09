@@ -49,11 +49,11 @@ public class Compétition {
 		}
 	}
 	
-	public void organiserMatchTour (int numTour, Date date, Terrain terrain, String type)throws ExceptionEquipesIncompatibles, ExceptionEquipeIncomplete{
+	public void organiserMatchTour (int numTour, Date date, Terrain terrain, String type)throws  ExceptionEquipeIncomplete{
 		int i=0, j=1, k=0;
 		while(i<=tours[numTour-1].length-2 & j<=tours[numTour-1].length-1) { //l'utilisation de numTour-1 est due au decalage des numero de tours et leur indice correspondant dans le tableau (Tour1 correspond a tours[0]
-			Matchs nouveauMatch = new Matchs (date, terrain, type);    // creation d'un nouveau match
-			nouveauMatch.AjouterEquipesParticipantes(tours[numTour-1][i],tours[numTour-1][j]); //attribuer des equipes à ce match
+			Matchs nouveauMatch = new Matchs (date, terrain, tours[numTour-1][i],tours[numTour-1][j]);    // creation d'un nouveau match
+			 //attribuer des equipes à ce match
 			matchsCompétition[numTour-1][k]=nouveauMatch;  //ajouter ce match à la competition au tour correspondant 
 			i+=2;
 			j+=2;
@@ -65,7 +65,7 @@ public class Compétition {
 	public void passerTourSuivant() {
 		Matchs [] tab = matchsCompétition[numTourActuel-1];
 		for(int i=0; i<tab.length; i++ ) {
-			tours[numTourActuel-1][i]=tab[i].equipegagnante;
+			tours[numTourActuel-1][i]=tab[i].EquipeGagnante;
 		}
 		numTourActuel++;
 	}
